@@ -14,14 +14,13 @@ app.use(express.static(publicPath)); //The directory for express to use
 io.on('connection', (socket) => {
   console.log('New user connected');
 
-  socket.emit('newMessage', {
-    from: 'BradServer',
-    text: 'Hello from server',
-    createdAt: new Date()
-  });
-
   socket.on('createMessage', (data) => {
     console.log('createMessage', data);
+    io.emit('newMessage', {
+      from: data.from,
+      text: data.text,
+      createdAt: new Date()
+    })
   });
 
   socket.on('disconnect', () => {
