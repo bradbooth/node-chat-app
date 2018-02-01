@@ -1,6 +1,6 @@
 var socket = io();
 
-socket.on('connect', function () {
+socket.on('connect', function (data) {
   console.log('Connected to server.');
 });
 
